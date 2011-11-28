@@ -57,6 +57,9 @@ class MongoDB(object):
         # indexes
         self.submit('cache_ratio', 'missRatio', server_status['indexCounters']['btree']['missRatio'])
 
+        # network
+        self.submit('mongo_network', 'bytesIn', server_status['network']['bytesIn'])
+        self.submit('mongo_network', 'bytesOut', server_status['network']['bytesOut'])
 
 
 
