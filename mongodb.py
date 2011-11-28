@@ -54,15 +54,11 @@ class MongoDB(object):
         self.submit('percent', 'lock_ratio', server_status['globalLock']['ratio'])
         self.submit('counter', 'lock_time_in_sec', float(server_status['globalLock']['lockTime'])/(10**6))
 
-
-
         # indexes
-        accesses = server_status['indexCounters']['btree']['accesses']
-        misses = server_status['indexCounters']['btree']['misses']
-        if misses:
-            self.submit('cache_ratio', 'cache_misses', accesses / float(misses))
-        else:
-            self.submit('cache_ratio', 'cache_misses', 0)
+        self.submit('cache_ratio', 'missRatio', server_status['indexCounters']['btree']['missRatio'])
+
+
+
 
         for mongo_db in self.mongo_db:
             db = con[mongo_db]
