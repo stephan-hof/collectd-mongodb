@@ -51,15 +51,9 @@ class MongoDB(object):
         self.submit('mongo_connections', 'connections', server_status['connections']['current'])
 
         # locks
-        if self.lockTotalTime is not None and self.lockTime is not None:
-            if self.lockTime == server_status['globalLock']['lockTime']:
-                value = 0.0
-            else:
-                value = float(server_status['globalLock']['lockTime'] - self.lockTime) * 100.0 / float(server_status['globalLock']['totalTime'] - self.lockTotalTime)
-            self.submit('percent', 'lock_ratio', value)
+        self.submit('percent', 'lock_ratio', server_status['globalLock']['ratio'])
+        self.submit('counter', 'lock_time_in_sec', float(server_status['globalLock']['lockTime'])/(10**6))
 
-        self.lockTotalTime = server_status['globalLock']['totalTime']
-        self.lockTime = server_status['globalLock']['lockTime']
 
 
         # indexes
