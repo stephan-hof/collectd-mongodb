@@ -77,10 +77,10 @@ class MongoDB(object):
             db_stats = db.command('dbstats')
 
             # stats counts
-            self.submit('counter', 'object_count', db_stats['objects'], mongo_db)
-            self.submit('counter', 'collections', db_stats['collections'], mongo_db)
-            self.submit('counter', 'num_extents', db_stats['numExtents'], mongo_db)
-            self.submit('counter', 'indexes', db_stats['indexes'], mongo_db)
+            self.submit('records', 'object_count', db_stats['objects'], mongo_db)
+            self.submit('records', 'collections', db_stats['collections'], mongo_db)
+            self.submit('records', 'num_extents', db_stats['numExtents'], mongo_db)
+            self.submit('records', 'indexes', db_stats['indexes'], mongo_db)
 
             # stats sizes
             self.submit('file_size', 'storage', db_stats['storageSize'], mongo_db)
