@@ -48,7 +48,7 @@ class MongoDB(object):
             self.submit('memory', t, server_status['mem'][t])
 
         # connections
-        self.submit('connections', 'connections', server_status['connections']['current'])
+        self.submit('mongo_connections', 'connections', server_status['connections']['current'])
 
         # locks
         if self.lockTotalTime is not None and self.lockTime is not None:
