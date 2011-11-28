@@ -61,7 +61,8 @@ class MongoDB(object):
         self.submit('mongo_network', 'bytesIn', server_status['network']['bytesIn'])
         self.submit('mongo_network', 'bytesOut', server_status['network']['bytesOut'])
 
-
+        # background flushing
+        self.submit('avg_flush_time', 'avg_flush_time', server_status['backgroundFlushing']['average_ms'])
 
         for mongo_db in self.mongo_db:
             db = con[mongo_db]
