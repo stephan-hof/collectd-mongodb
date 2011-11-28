@@ -16,9 +16,6 @@ class MongoDB(object):
         self.mongo_user = None
         self.mongo_password = None
 
-        self.lockTotalTime = None
-        self.lockTime = None
-
     def submit(self, type, instance, value, db=None):
         if db:
             plugin_instance = '%s-%s' % (self.mongo_port, db)
